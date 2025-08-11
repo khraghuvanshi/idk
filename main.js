@@ -76,3 +76,28 @@ addEventListener("scroll", o),
         });
     })
     .catch(() => {});
+
+
+async function initCarousel(){
+  let data=[]; try{ const res = await fetch('lib/projects.json',{cache:'no-store'}); if(res.ok) data = await res.json(); }catch(e){}
+  const track = document.getElementById('caro-track'); if(!track) return;
+  track.innerHTML='';
+  (Array.isArray(data)?data:[]).slice(0,12).forEach(p=>{
+    const slide=document.createElement('article'); slide.className='card project-card caro-slide';
+    slide.innerHTML = `
+      <img class="thumb" src="${p.image || 'assets/images/projects.jpg'}" alt="${p.title || 'Project'}" loading="lazy">
+      <div class="card-body">
+        <div class="project-meta"><h3>${p.title || 'Project'}</h3><span class="year badge">${p.year || ''}</span></div>
+        <p>${p.description || ''}</p>
+        <div class="project-actions">
+          <a class="btn ghost" href="${p.link || '#'}" target="_blank" rel="noopener">Learn more</a>
+        </div>
+      </div>`;
+    track.appendChild(slide);
+  });
+  const prev=document.querySelector('.caro-btn.prev'), next=document.querySelector('.caro-btn.next');
+  const scrollBy = () => Math.min(track.clientWidth*0.9, 520);
+  prev?.addEventListener('click',()=>track.scrollBy({left:-scrollBy(), behavior:'smooth'}));
+  next?.addEventListener('click',()=>track.scrollBy({left:scrollBy(), behavior:'smooth'}));
+}
+initCarousel();

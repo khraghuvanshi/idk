@@ -378,3 +378,56 @@ kbd {
     grid-column: span 12;
   }
 }
+
+
+/* ===== New section styles to match screenshot vibe ===== */
+.section-head.center { text-align: center; align-items: center; justify-content: center; flex-direction: column; }
+.section-head.center .small { font-size: .95rem; margin-top: .25rem; }
+
+.section-light { background: #101115; }
+.section-band { background: #2a4160; border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(0,0,0,.25); }
+
+/* Carousel look */
+.carousel { position: relative; margin-top: 14px; }
+.caro-viewport { overflow: hidden; }
+.caro-track { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 360px); gap: 18px; overflow-x: auto; padding: 10px 6px 16px; scroll-snap-type: x mandatory; }
+.caro-track::-webkit-scrollbar{height:8px}
+.caro-track::-webkit-scrollbar-thumb{background:#2a2a33; border-radius:8px}
+.caro-slide { scroll-snap-align: start; }
+.caro-btn { position: absolute; left: 6px; width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; }
+.caro-btn.next { left: 56px; }
+.caro-btn span { font-size: 20px; line-height: 1; }
+.project-card { background: #fff; color: #111; }
+.project-card .card-body { color: #222; }
+.project-card p { color: #444; }
+.project-card .thumb { border-bottom: none; }
+.project-card .year.badge { color: #666; border-color: #e5e7eb; }
+.btn.ghost { border-color: #e5e7eb; color: #111; }
+.btn.ghost:hover { background: #f4f4f4; }
+
+/* Interests: simple cards */
+.interests-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+.interest { background: #fff; color: #111; border-radius: 18px; overflow: hidden; }
+.interest img { width: 100%; height: 180px; object-fit: cover; display: block; }
+.interest h3, .interest p { margin: .6rem .9rem 0; }
+.interest p { margin-bottom: .9rem; color: #444; }
+.interests-grid .interest { grid-column: span 3; }
+@media (max-width: 900px){ .interests-grid .interest { grid-column: span 6; } }
+@media (max-width: 560px){ .interests-grid .interest { grid-column: span 12; } }
+
+/* Certificates: pill cards in band */
+.cert-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+.cert { grid-column: span 3; }
+.cert-card { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); border-radius: 20px; color: #eaeaf0; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+.cert-card a { color: #e5e7ff; text-decoration: underline; }
+@media (max-width: 900px){ .cert { grid-column: span 6; } }
+@media (max-width: 560px){ .cert { grid-column: span 12; } }
+
+/* Q/A: minimal lines with + toggles */
+.qa .faq { max-width: 900px; margin: 0 auto; }
+.qa .faq-item { background: transparent; border: none; border-radius: 0; }
+.qa .faq-q { all: unset; display: flex; width: 100%; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.08); cursor: pointer; }
+.qa .faq-q::after { content: '+'; font-weight: 700; opacity: .7; }
+.qa .expanded .faq-q::after { content: '–'; }
+.qa .faq-a { display: none; padding: 8px 0 16px; color: var(--muted); }
+.qa .expanded .faq-a { display: block; }
